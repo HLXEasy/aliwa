@@ -144,7 +144,8 @@ class aliwa_wallet{
         }  
         
         if(cnf.aliwa_server_address!=null && cnf.aliwa_server_address.includes(".onion")){
-            this.socket =  await io.connect(cnf.aliwa_server_address, { agent: agent });
+            this.socket =  await io.connect(cnf.aliwa_server_address, { agent: agent,
+            withCredentials: true,  extraHeaders: {"aliwa-server": "true"}});
         }    
         
               
