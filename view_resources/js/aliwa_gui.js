@@ -659,13 +659,13 @@ function view_send(user_inputs){
          
         var tx_dest = JSON.parse(JSON.stringify(transaction_send_list));
         if(tx_dest.length<1){show_popup_action(templ_loads,"error","List is empty!"); return;}
-        var tx_info = await window.electron.ipcRenderer_invoke("get_raw_tx", tx_dest);
-        if (tx_info == false) {
+        var fee = await window.electron.ipcRenderer_invoke("get_fee", tx_dest);
+        if (fee == false) {
             show_popup_action(templ_loads, "error", "Unknown error");
             return;
         }
-        if(tx_info=="server_not_synced"){show_popup_action(templ_loads,"error","Not connected or synced with the server!",2500);return;}        
-        var fee = tx_info.fee;
+        //if(tx_info=="server_not_synced"){show_popup_action(templ_loads,"error","Not connected or synced with the server!",2500);return;}        
+       // var fee = tx_info.fee;
         $("#view_send_fee").text(new Big(fee).toFixed(8));
         var tx_text = "";
         var temp_tx_text = "";
@@ -903,8 +903,8 @@ async function send_list_remove_items(){
 
                 //update modal
                 var tx_dest = JSON.parse(JSON.stringify(transaction_send_list));
-                var tx_info = await window.electron.ipcRenderer_invoke("get_raw_tx", tx_dest);
-                var fee = tx_info.fee;
+                var fee = await window.electron.ipcRenderer_invoke("get_fee", tx_dest);
+               // var fee = tx_info.fee;
 
                 var total_send = new Big(0);
                 total_send=total_send.plus(fee);
