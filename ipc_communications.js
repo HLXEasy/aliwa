@@ -190,8 +190,8 @@ module.exports = function () {
         return list_result;
    });
    
-   ipcMain.handle('list_contact_addresses', async (event,page, order_field, direction, search) => {
-        var list_result= wallet.list_contact_addresses(page, order_field, direction, search);
+   ipcMain.handle('list_contact_addresses', async (event,page, order_field, direction, search,strict_label=false) => {
+        var list_result= wallet.list_contact_addresses(page, order_field, direction, search,strict_label);
         return list_result;
    });
    

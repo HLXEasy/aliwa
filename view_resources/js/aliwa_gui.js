@@ -1254,7 +1254,8 @@ async function check_send_form(address,label,narration,amount,shake_id){
 }
 
 async function check_label(address,label) {
-    var label_list = await window.electron.ipcRenderer_invoke('list_contact_addresses', 0, "pos", false, label);
+    if(label ==""){return true;}
+    var label_list = await window.electron.ipcRenderer_invoke('list_contact_addresses', 0, "pos", false, label,true);
     if (label_list.result[0] != undefined && label_list.result[0] != null) {      
         if(label==label_list.result[0].label && label_list.result[0].address!=address){         
             return false;
