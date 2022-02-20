@@ -620,11 +620,11 @@ class aliwa_wallet{
             var result = [];           
             var tx_array=[];
             if(strict_label){
-            var tx_array = txs.chain().find({"label": {'$aeq': search}})
+                tx_array = txs.chain().find({"label": {'$aeq': search}})
                     .simplesort(order_field, {desc: direction}).data({forceClones: true, removeMeta: true});
             }
             else{
-                var tx_array = txs.chain().find({'$or': [
+                tx_array = txs.chain().find({'$or': [
                     {"pos": {'$aeq': (parseInt(search)-1)}},
                     {"label": {'$contains': search}},
                     {"address": {'$contains': search}}                    
