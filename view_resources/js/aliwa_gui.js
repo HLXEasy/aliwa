@@ -1322,7 +1322,7 @@ async function view_receive(){
     //manipulate
     $("#navbar_title").text("Receive");
     var address_obj=await window.electron.ipcRenderer_invoke("get_latest_receive_addr");
-    show_qr_code("view_qr_code",address_obj.address);
+    show_qr_code("view_qr_code","alias:"+address_obj.address+"?label=&narration=&amount=");
     //...
     
     $("body").fadeIn(100,"easeInOutQuad");
@@ -1399,7 +1399,7 @@ async function view_receive_payment(address_obj){
      if(address_obj==undefined){
         address_obj=await window.electron.ipcRenderer_invoke("get_latest_receive_addr");
      }
-     var qrcode=show_qr_code("view_qr_code",address_obj.address);
+     var qrcode=show_qr_code("view_qr_code","alias:"+address_obj.address+"?label=&narration=&amount=");
      $("#view_receive_payment_address_address").text(address_obj.address);
      $("#view_receive_payment_address_label").text(address_obj.label);
      $("#view_receive_payment_label_input").val(address_obj.label!=null ? address_obj.label : "");
